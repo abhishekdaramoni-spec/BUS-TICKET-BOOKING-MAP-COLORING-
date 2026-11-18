@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row mt-4">
+    <div class="col-md-8 mx-auto">
+        <h2 class="mb-4 text-primary fw-bold">Passenger Details</h2>
+        <div class="alert alert-info shadow-sm border-0">
+            <strong>Logged in as:</strong> {{ session.get('user_name') }} ({{ session.get('role', 'user') }})
+        </div>
+        
+        <form action="{{ url_for('booking.summary') }}" method="POST">
+            {% set seats = data.selected_seats.split(',') %}
+            {% for i in range(data.passengers) %}
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-white border-bottom">
+                    <h5 class="mb-0 text-primary">Passenger {{ i + 1 }} <span class="badge bg-secondary float-end">Seat {{ seats[i] }}</span></h5>
+                </div>
+                <div class="card-body">
+                    <input type="hidden" name="seat_{{ i }}" value="{{ seats[i] }}">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted fw-semibold small text-uppercase">Full Name</label>
+                            <input type="text" class="form-control" name="name_{{ i }}" required>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label text-muted fw-semibold small text-uppercase">Age</label>
+                            <input type="number" class="form-control" name="age_{{ i }}" required>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label text-muted fw-semibold small text-uppercase">Gender</label>
+                            <select class="form-select" name="gender_{{ i }}">
+                                <option>Male</option><option>Female</option><option>Other</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted fw-semibold small text-uppercase">Email</label>
+                            <input type="email" class="form-control" name="email_{{ i }}" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-muted fw-semibold small text-uppercase">Phone</label>
+                            <input type="text" class="form-control" name="phone_{{ i }}" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary btn-lg w-100 shadow">Review Booking Summary</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

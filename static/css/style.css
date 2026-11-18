@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --primary: #d84e55; /* AbhiBus-like red/coral for high conversion */
+    --primary-dark: #b83d44;
+    --secondary: #182135; /* Deep rich navy for text and contrast */
+    --accent: #FFC107;
+    --success: #00c46a;
+    --danger: #ff4d4d;
+    --bg-main: #f4f5f8;
+    --text-dark: #182135;
+    --text-muted: #6b7280;
+    --border-color: #e5e7eb;
+    --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    --hover-shadow: 0 12px 32px rgba(216, 78, 85, 0.15);
+    
+    /* Graph Colors */
+    --color-0: #fce7f3; /* pink */
+    --color-1: #fef3c7; /* amber */
+    --color-2: #d1fae5; /* green */
+    --color-3: #e0e7ff; /* indigo */
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-dark);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Navbar */
+.navbar {
+    background-color: white !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    padding: 1rem 0;
+}
+
+.navbar-brand {
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--primary) !important;
+    letter-spacing: -0.5px;
+}
+
+.nav-link {
+    color: var(--secondary) !important;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 0 0.5rem;
+    transition: color 0.2s;
+}
+
+.nav-link:hover {
+    color: var(--primary) !important;
+}
+
+/* Hero Section */
+.hero-wrapper {
+    background-image: linear-gradient(rgba(24, 33, 53, 0.75), rgba(24, 33, 53, 0.85)), url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 6rem 0 9rem 0;
+    position: relative;
+    color: white;
+    text-align: center;
+}
+
+/* Search Widget (Overlapping) */
+.search-widget-container {
+    margin-top: -4rem;
+    position: relative;
+    z-index: 10;
+}
+
+.search-widget {
+    background: white;
+    border-radius: 16px;
+    padding: 1rem;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0;
+}
+
+.search-input-group {
+    flex: 1;
+    min-width: 200px;
+    padding: 1rem 1.5rem;
+    border-right: 1px solid var(--border-color);
+    position: relative;
+}
+
+.search-input-group:last-of-type {
+    border-right: none;
+}
+
+.search-input-group label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.2rem;
+    display: block;
+}
+
+.search-input-group select, 
+.search-input-group input {
+    border: none;
+    padding: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--secondary);
+    background: transparent;
+    box-shadow: none !important;
+    outline: none;
+    width: 100%;
+}
+
+.search-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 1.2rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 100%;
+    width: 100%;
+}
+
+.search-btn:hover {
+    background-color: var(--primary-dark);
+    box-shadow: var(--hover-shadow);
+}
+
+/* Bus Cards */
+.bus-card {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+}
+
+.bus-card:hover {
+    box-shadow: var(--card-shadow);
+    border-color: transparent;
+}
+
+.timeline-view {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.time-box {
+    text-align: center;
+}
+
+.duration-line {
+    flex: 1;
+    height: 2px;
+    background: var(--border-color);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.duration-text {
+    background: white;
+    padding: 0 10px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.duration-line::before, .duration-line::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--border-color);
+    border-radius: 50%;
+    position: absolute;
+}
+.duration-line::before { left: 0; }
+.duration-line::after { right: 0; }
+
+/* Amenities */
+.amenity-icon {
+    color: var(--text-muted);
+    margin-right: 0.8rem;
+    font-size: 1.1rem;
+}
+
+/* Seat Selection */
+.bus-interior {
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2rem;
+    width: fit-content;
+    margin: 0 auto;
+    position: relative;
+}
+
+.steering-wheel {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 2rem;
+    color: var(--text-muted);
+}
+
+.seat-btn {
+    width: 45px;
+    height: 55px;
+    border-radius: 8px 8px 4px 4px;
+    border: 2px solid #cbd5e1;
+    background: white;
+    font-weight: 700;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 0.5rem;
+}
+
+.seat-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.seat-booked {
+    background-color: #cbd5e1 !important;
+    border-color: #94a3b8 !important;
+    color: white;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.seat-selected {
+    background-color: var(--success) !important;
+    border-color: #059669 !important;
+    color: white !important;
+}
+
+.seat-row {
+    display: flex;
+    gap: 10px;
+}
+
+.aisle {
+    width: 30px; /* Aisle spacing */
+}
+
+/* Buttons */
+.btn-primary-custom {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+}
+.btn-primary-custom:hover {
+    background-color: var(--primary-dark);
+}
+
+.price-text {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--secondary);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--secondary);
+    color: white;
+    padding: 4rem 0 2rem 0;
+    margin-top: 5rem;
+}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3 class="mb-4">My Bookings</h3>
+<div class="row">
+    {% for b in bookings %}
+    <div class="col-md-12 mb-3">
+        <div class="card shadow-sm border-start border-4 {% if b.booking_status == 'Cancelled' %}border-danger{% else %}border-success{% endif %}">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="card-title">{{ b.booking_reference }} <span class="badge {% if b.booking_status == 'Cancelled' %}bg-danger{% else %}bg-success{% endif %}">{{ b.booking_status }}</span></h5>
+                    <p class="mb-1 fw-bold">{{ b.bus.from_city }} &rarr; {{ b.bus.to_city }} on {{ b.journey_date }}</p>
+                    <p class="text-muted small mb-0">{{ b.bus.operator }} | Seats: {{ b.seat_numbers }} | ₹{{ b.total_amount }}</p>
+                </div>
+                <div class="text-end">
+                    {% if b.booking_status != 'Cancelled' %}
+                        <a href="{{ url_for('booking.confirmation', booking_id=b.id) }}" class="btn btn-outline-primary btn-sm mb-1 d-block">View Ticket</a>
+                        <form action="{{ url_for('booking.cancel', booking_id=b.id) }}" method="POST" onsubmit="return confirm('Are you sure you want to cancel this booking? Cancellation rules will apply.');">
+                            <button type="submit" class="btn btn-outline-danger btn-sm w-100">Cancel Booking</button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="alert alert-info">No bookings found.</div>
+    {% endfor %}
+</div>
+{% endblock %}

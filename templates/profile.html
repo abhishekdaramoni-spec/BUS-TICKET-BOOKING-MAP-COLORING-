@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <h3 class="mb-4">Profile</h3>
+        
+        <div class="card shadow-sm mb-4">
+            <div class="card-body text-center">
+                <h5 class="card-title">User ID: {{ user.id }}</h5>
+                <hr>
+                <div class="d-flex justify-content-around">
+                    <div><h4 class="text-primary">{{ total }}</h4><p class="text-muted small">Total Bookings</p></div>
+                    <div><h4 class="text-success">{{ upcoming }}</h4><p class="text-muted small">Upcoming Trips</p></div>
+                    <div><h4 class="text-secondary">{{ completed }}</h4><p class="text-muted small">Completed Trips</p></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('auth.profile') }}">
+                    <div class="mb-3">
+                        <label>Name</label>
+                        <input type="text" name="name" class="form-control" value="{{ user.name }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>Email</label>
+                        <input type="email" name="email" class="form-control" value="{{ user.email }}" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Update Profile</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
